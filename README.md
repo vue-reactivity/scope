@@ -34,14 +34,13 @@ let disposables = []
 
 const doubled = computed(() => counter.value * 2)
 
-disposables.push(() => stop(doubled.effect))
-
 const stopWatch = watch(doubled, () => console.log(double.value))
-
-disposables.push(stopWatch)
 
 const stopWatchEffect = watchEffect(() => console.log('Count: ', double.value))
 
+// manually collect effects
+disposables.push(() => stop(doubled.effect))
+disposables.push(stopWatch)
 disposables.push(stopWatchEffect)
 
 // to dispose all
@@ -50,8 +49,6 @@ disposables = []
 ```
 
 </details>
-
-<br>
 
 <details>
 <summary>😎 With <code>@vue-reactivity/scope</code></summary>
@@ -64,8 +61,10 @@ const counter = ref(0)
 
 const stop = effectScope(() => {
   // computed, watch, watchEffect, effect ran inside the scope will be auto collected
-  computed(() => counter.value * 2)
+  const doubled = computed(() => counter.value * 2)
+
   watch(doubled, () => console.log(double.value))
+
   watchEffect(() => console.log('Count: ', double.value))
 })
 
@@ -76,7 +75,7 @@ stop()
 </details>
 <br>
 
-This package redirects the APIs in `@vue/reactivity` and add some hook to them. You should always import those APIs from `@vue-reactivity/scope` instead of `@vue/reactivity`.
+This package redirects the APIs in `@vue/reactivity` and add some hook to them. You should always import APIs from `@vue-reactivity/scope` instead of `@vue/reactivity`.
 
 ## License
 
