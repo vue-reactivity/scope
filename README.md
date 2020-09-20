@@ -12,7 +12,7 @@ The auto effect collecting for <a href="https://github.com/vuejs/vue-next/tree/m
 </p>
 
 <p align='center'>
-  <b><a href='https://github.com/vuejs/rfcs/pull/212#issuecomment-695787934'>An RFC to back porting this feature into <code>@vue/reactivity</code> itself is in progress</a>. Feedback wanted, thanks!</b>
+  <b><a href='https://github.com/vuejs/rfcs/pull/212'>An RFC to back porting this feature into <code>@vue/reactivity</code> itself is in progress</a>. Feedback wanted, thanks!</b>
 </p>
 
 ## Install
