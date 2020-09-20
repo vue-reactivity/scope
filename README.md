@@ -11,6 +11,10 @@ The auto effect collecting for <a href="https://github.com/vuejs/vue-next/tree/m
   <a href="https://bundlephobia.com/result?p=@vue-reactivity/scope"><img src="https://img.shields.io/bundlephobia/minzip/@vue-reactivity/scope?color=364a5e&label=" alt="npm bundle size"></a>
 </p>
 
+<p align='center'>
+  <b><a href='https://github.com/vuejs/rfcs/pull/212#issuecomment-695787934'>An RFC</a> to back porting this feature into <code>@vue/reactivity</code> itself is in progress. Feedback needed, thanks!</b>
+</p>
+
 ## Install
 
 <pre>
