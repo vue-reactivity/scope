@@ -12,7 +12,7 @@ The auto effect collecting for <a href="https://github.com/vuejs/vue-next/tree/m
 </p>
 
 <p align='center'>
-  <b><a href='https://github.com/vuejs/rfcs/pull/212'>An RFC to back porting this feature into <code>@vue/reactivity</code> itself is in progress</a>. Feedback wanted, thanks!</b>
+  <b><a href='https://github.com/vuejs/rfcs/pull/212'>An RFC to backporting this feature into <code>@vue/reactivity</code> is in progress</a>. Feedback wanted, thanks!</b>
 </p>
 
 ## Install
@@ -25,9 +25,7 @@ npm i @vue-reactivity/<b>scope</b>
 
 > Note: `effectScope` do NOT have equivalent in Vue. This package is designed to be used on **non-Vue environment**.
 
-<details>
-<summary>🥵 Collect and dispose manually</summary>
-<br>
+#### 🥵 Collect and dispose manually
 
 ```ts
 import { ref, computed, stop } from '@vue/reactivity'
@@ -52,18 +50,14 @@ disposables.forEach(d => d())
 disposables = []
 ```
 
-</details>
-
-<details>
-<summary>😎 With <code>@vue-reactivity/scope</code></summary>
-<br>
+#### 😎 With <code>@vue-reactivity/scope</code>
 
 ```ts
-import { effectScope, ref, computed, watch, watchEffect } from '@vue-reactivity/scope
+import { effectScope, ref, computed, watch, watchEffect, stop } from '@vue-reactivity/scope'
 
 const counter = ref(0)
 
-const stop = effectScope(() => {
+const scope = effectScope(() => {
   // computed, watch, watchEffect, effect ran inside the scope will be auto collected
   const doubled = computed(() => counter.value * 2)
 
@@ -73,10 +67,9 @@ const stop = effectScope(() => {
 })
 
 // to dispose all effects
-stop()
+stop(scope)
 ```
 
-</details>
 <br>
 
 This package redirects the APIs in `@vue/reactivity` and add some hook to them. You should always import APIs from `@vue-reactivity/scope` instead of `@vue/reactivity`.

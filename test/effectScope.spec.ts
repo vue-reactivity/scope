@@ -1,11 +1,11 @@
 import test from 'ava'
-import { watch, ref, effectScope, watchEffect } from '../src'
+import { watch, ref, effectScope, watchEffect, stop } from '../src'
 
 test('should work', (t) => {
   let triggered = 0
   const counter = ref(0)
 
-  const stop = effectScope(() => {
+  const scope = effectScope(() => {
     watch(counter, () => {
       triggered += 1
     })
@@ -19,7 +19,7 @@ test('should work', (t) => {
   t.is(counter.value, 2)
   t.is(triggered, 2)
 
-  stop()
+  stop(scope)
 
   counter.value += 1
   t.is(counter.value, 3)
@@ -31,7 +31,7 @@ test('should work with multiple effect', (t) => {
   let sync = 0
   const counter = ref(0)
 
-  const stop = effectScope(() => {
+  const scope = effectScope(() => {
     watch(counter, () => {
       triggered += 1
     })
@@ -46,7 +46,7 @@ test('should work with multiple effect', (t) => {
     t.is(sync, 1)
   })
 
-  stop()
+  stop(scope)
 
   counter.value += 2
   t.is(counter.value, 3)
@@ -61,7 +61,7 @@ test('should work with nested scopes', (t) => {
   let sync = 0
   const counter = ref(0)
 
-  const stop = effectScope(() => {
+  const scope = effectScope(() => {
     watch(counter, () => {
       triggered += 1
     })
@@ -78,7 +78,7 @@ test('should work with nested scopes', (t) => {
     })
   })
 
-  stop()
+  stop(scope)
 
   counter.value += 2
   t.is(counter.value, 3)

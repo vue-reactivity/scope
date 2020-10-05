@@ -3,56 +3,78 @@ import {
   ReactiveEffect,
 } from '@vue/reactivity'
 
-interface Scope {
+export interface EffectScope {
+  (fn: () => void): void
+  _isEffectScope: true
+  id: number
   active: boolean
-  effects: (ReactiveEffect | Scope)[]
+  effects: (ReactiveEffect | EffectScope)[]
 }
 
-const scopeStacks: Scope[] = []
-let activeScope: Scope | undefined
+export interface EffectScopeOptions {
+  detached?: boolean
+}
 
-export function recordEffect(effect: ReactiveEffect | Scope) {
-  if (activeScope?.active && effect)
-    activeScope.effects.push(effect)
+let uid = 0
+const effectScopeStack: EffectScope[] = []
+let activeEffectScope: EffectScope | undefined
+
+export function recordEffect(effect: ReactiveEffect | EffectScope) {
+  if (activeEffectScope?.active && effect)
+    activeEffectScope.effects.push(effect)
 }
 
 export function isEffect(fn: any): fn is ReactiveEffect {
   return fn && fn._isEffect === true
 }
 
-export function stop(targets: Scope | ReactiveEffect | (Scope | ReactiveEffect)[]) {
-  if (!Array.isArray(targets))
-    targets = [targets]
-
-  for (const target of targets) {
-    if (!target.active)
-      return
-    if (isEffect(target)) {
-      _stop(target)
-    }
-    else {
-      stop(target.effects)
-      target.active = false
-    }
+export function stop(effect: EffectScope | ReactiveEffect) {
+  if (!effect.active)
+    return
+  if (isEffect(effect)) {
+    _stop(effect)
+  }
+  else {
+    effect.effects.forEach(e => stop(e))
+    effect.active = false
   }
 }
 
-export function effectScope(fn: () => void) {
-  const scope: Scope = {
-    active: true,
-    effects: [],
-  }
-  try {
-    recordEffect(scope)
-    scopeStacks.push(scope)
-    activeScope = scope
-    fn()
-    return () => stop(scope)
-  }
-  finally {
-    scopeStacks.pop()
-    activeScope = scopeStacks.length
-      ? scopeStacks[scopeStacks.length - 1]
-      : undefined
-  }
+function recordEffectScope(effect: ReactiveEffect | EffectScope) {
+  if (activeEffectScope && activeEffectScope.active)
+    activeEffectScope.effects.push(effect)
+}
+
+export function effectScope(
+  fn?: () => void,
+  options: EffectScopeOptions = {},
+): EffectScope {
+  const scope = function(fn: () => void): unknown {
+    if (!scope.active)
+      return
+
+    try {
+      if (!options.detached)
+        recordEffectScope(scope)
+
+      effectScopeStack.push(scope)
+      activeEffectScope = scope
+      fn()
+      return scope
+    }
+    finally {
+      effectScopeStack.pop()
+      activeEffectScope = effectScopeStack[effectScopeStack.length - 1]
+    }
+  } as EffectScope
+
+  scope._isEffectScope = true
+  scope.id = uid++
+  scope.active = true
+  scope.effects = []
+
+  if (fn)
+    scope(fn)
+
+  return scope
 }
