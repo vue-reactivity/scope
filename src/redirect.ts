@@ -1,4 +1,3 @@
-
 // redirect all APIs from @vue/reactivity
 export {
   // computed,
@@ -46,4 +45,14 @@ export type {
   UnwrapRef,
   WritableComputedOptions,
   WritableComputedRef,
+  ShallowUnwrapRef,
 } from '@vue/reactivity'
+
+export type {
+  WatchCallback,
+  WatchEffect,
+  WatchOptions,
+  WatchOptionsBase,
+  WatchSource,
+  WatchStopHandle,
+} from '@vue-reactivity/watch'
