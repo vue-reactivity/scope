@@ -1,7 +1,7 @@
 dependencies:
-  '@vue-reactivity/watch': 0.1.2_b33fe1bc03d9e45a667ae48a3d4fee24
-  '@vue/reactivity': 3.0.0-rc.12
-  '@vue/shared': 3.0.0-rc.12
+  '@vue-reactivity/watch': 0.1.2_fb63d0aa575f75e1554bc97d137c8c5f
+  '@vue/reactivity': 3.1.1
+  '@vue/shared': 3.1.1
 devDependencies:
   '@antfu/eslint-config-ts': 0.3.3_eslint@7.9.0+typescript@4.0.2
   '@types/node': 14.11.1
@@ -12,7 +12,7 @@ devDependencies:
   esm: 3.2.25
   tsup: 3.7.0_typescript@4.0.2
   typescript: 4.0.2
-lockfileVersion: 5.1
+lockfileVersion: 5.2
 packages:
   /@antfu/eslint-config-basic/0.3.3_eslint@7.9.0:
     dependencies:
@@ -386,26 +386,28 @@ packages:
       node: ^8.10.0 || ^10.13.0 || >=11.10.1
     resolution:
       integrity: sha512-qC8Olwz5ZyMTZrh4Wl3K4U6tfms0R/mzU4/5W3XeUZptVraGVmbptJbn6h2Ey6Rb3hOs3zWoAUebZk8t47KGiQ==
-  /@vue-reactivity/watch/0.1.2_b33fe1bc03d9e45a667ae48a3d4fee24:
+  /@vue-reactivity/watch/0.1.2_fb63d0aa575f75e1554bc97d137c8c5f:
     dependencies:
-      '@vue/reactivity': 3.0.0-rc.12
-      '@vue/shared': 3.0.0-rc.12
+      '@vue/reactivity': 3.1.1
+      '@vue/shared': 3.1.1
     dev: false
     peerDependencies:
       '@vue/reactivity': '>=3.0.0-rc.1'
       '@vue/shared': '>=3.0.0-rc.1'
     resolution:
       integrity: sha512-5zNkN8PBsfrE3+vXXu5z41DaIZfQLni0ou0GbNK51LKLaJnSVz4nhDW3RGiR1JtO4Dh7zK5xLATUuXkcKrJVMQ==
-  /@vue/reactivity/3.0.0-rc.12:
+  /@vue/reactivity/3.1.1:
     dependencies:
-      '@vue/shared': 3.0.0-rc.12
+      '@vue/shared': 3.1.1
     dev: false
     resolution:
-      integrity: sha512-Cz2wwwH7QpG2BDmmZ9Lia+soji9i3QjzMf1Mko3kIEHHGkeid6OxOaMXBEMCJjAyiRt+1VTHBZv6FgsUJeaDAQ==
-  /@vue/shared/3.0.0-rc.12:
+      integrity: sha1-nAL9FGpsOwPn1li3z3b0tpsPmMg=
+      tarball: '@vue/reactivity/-/@vue/reactivity-3.1.1.tgz'
+  /@vue/shared/3.1.1:
     dev: false
     resolution:
-      integrity: sha512-UwkiTl7XVQ3vu22t7JgUGLNXSxvsr500W43V2I1N4B3vxBRGB1OLzCjGPtXMIXtWhZlaaZzivEU1zmr5sqmgaw==
+      integrity: sha1-IofPw9wg5bIK62XCw6VlM73KgBw=
+      tarball: '@vue/shared/-/@vue/shared-3.1.1.tgz'
   /acorn-jsx/5.3.1_acorn@7.4.0:
     dependencies:
       acorn: 7.4.0
@@ -3596,8 +3598,8 @@ specifiers:
   '@antfu/eslint-config-ts': ^0.3.3
   '@types/node': ^14.11.1
   '@vue-reactivity/watch': ^0.1.2
-  '@vue/reactivity': '>=3.0.0-rc.1'
-  '@vue/shared': '>=3.0.0-rc.1'
+  '@vue/reactivity': ^3.1.1
+  '@vue/shared': ^3.1.1
   ava: ^3.12.1
   c8: ^7.3.0
   esbuild-register: ^1.0.2

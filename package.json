@@ -23,8 +23,8 @@
   },
   "dependencies": {
     "@vue-reactivity/watch": "^0.1.2",
-    "@vue/reactivity": ">=3.0.0-rc.1",
-    "@vue/shared": ">=3.0.0-rc.1"
+    "@vue/reactivity": "^3.1.1",
+    "@vue/shared": "^3.1.1"
   },
   "devDependencies": {
     "@antfu/eslint-config-ts": "^0.3.3",
