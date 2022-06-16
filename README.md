@@ -12,7 +12,7 @@ The auto effect collecting for <a href="https://github.com/vuejs/vue-next/tree/m
 </p>
 
 <p align='center'>
-  <b><a href='https://github.com/vuejs/rfcs/pull/212'>An RFC to backporting this feature into <code>@vue/reactivity</code> is in progress</a>. Feedback wanted, thanks!</b>
+  <b>✳️ DEPRECATED: <a href='https://github.com/vuejs/rfcs/pull/212'><code>@vue/reactivity</code> now ships <code>effectScope</code> builtin</a></b>
 </p>
 
 ## Install
